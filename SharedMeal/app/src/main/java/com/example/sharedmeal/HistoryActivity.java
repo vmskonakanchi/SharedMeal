@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.firebase.ui.auth.data.model.User;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
 
-    List<String> donations;
+    private List<String> userDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,24 +23,17 @@ public class HistoryActivity extends AppCompatActivity {
     }
 
     private void UpdateList() {
-        donations = QuantityActivity.quantities;
-        ArrayAdapter<String> listOfDonations = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, donations);
+        //getting the data for the updating the list
         ListView list = findViewById(R.id.historyList);
+        //TODO: get the selected item from the quantity activity and get them here and it userdata here
+        String data = QuantityActivity.quantitySelected + "\n"
+                + QuantityActivity.vehicleType + "\n"
+                + QuantityActivity.address;
+
+        userDataList.add(data);
+        userDataList.add("Hey All XDXD");
+
+        ArrayAdapter<String> listOfDonations = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, userDataList);
         list.setAdapter(listOfDonations);
-        //TODO: set the list of quantities and address and vehicle type to the user data and update the history list
-    }
-}
-
-class UserData {
-    private String quantity;
-    private String address;
-    private String vehicleType;
-    public String totalData;
-
-    public UserData(String quantity, String address, String vehicleType) {
-        this.quantity = quantity;
-        this.address = address;
-        this.vehicleType = vehicleType;
-        totalData = quantity + "\n" + vehicleType + "\n" + address;
     }
 }

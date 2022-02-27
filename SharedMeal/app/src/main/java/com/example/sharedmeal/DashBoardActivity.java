@@ -39,6 +39,7 @@ public class DashBoardActivity extends AppCompatActivity {
 
     public void History(View view) {
         //called when History button is clicked
+        startActivity(new Intent(this, HistoryActivity.class));
     }
 
     public void LogOut(View view) {
