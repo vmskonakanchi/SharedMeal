@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/emailLogin"
+        android:layout_width="287dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="204dp"
+        android:ems="10"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/passwordLogin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="@string/prompt_password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/emailLogin"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/emailLogin"
+        app:layout_constraintTop_toBottomOf="@+id/emailLogin" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="191dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="60dp"
+        android:onClick="Login"
+        android:text="Log In"
+        android:textColor="@color/text"
+        app:iconTint="@color/lightwhitewithblue"
+        app:layout_constraintEnd_toEndOf="@+id/passwordLogin"
+        app:layout_constraintStart_toStartOf="@+id/passwordLogin"
+        app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:onClick="Register"
+        android:text="@string/fui_title_register_email"
+        android:textColor="#455A64"
+        app:layout_constraintEnd_toEndOf="@+id/loginButton"
+        app:layout_constraintStart_toStartOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <Button
+        android:id="@+id/resetPassword"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="151dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:onClick="ForgotPassword"
+        android:text="Forgot Password"
+        android:textColor="@color/lightpurple"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/loginButton"
+        app:layout_constraintStart_toStartOf="@+id/loginButton"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>
