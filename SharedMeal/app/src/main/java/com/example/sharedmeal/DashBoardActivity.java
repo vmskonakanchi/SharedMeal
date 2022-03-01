@@ -28,13 +28,12 @@ public class DashBoardActivity extends AppCompatActivity {
 
     public void Donate(View view) {
         //called when Donate button is clicked
-        //TODO:Ask for user permission for location
-        // Go to details activity - quantity of food, address, vehicle-type
         AskForLocationPermission();
     }
 
     public void Status(View view) {
         //called when Status button is clicked
+        startActivity(new Intent(this, StatusActivity.class));
     }
 
     public void History(View view) {

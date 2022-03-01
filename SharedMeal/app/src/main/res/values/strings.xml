@@ -12,4 +12,21 @@
     <string name="userName">Name</string>
     <string name="phone">Phone</string>
     <string name="Register">Register</string>
+    <string-array name="VehicleType">
+        <item>Bike</item>
+        <item>Auto</item>
+        <item>Heavy Vehicle</item>
+    </string-array>
+    <string-array name="Quantity">
+        <item>10kg</item>
+        <item>20kg</item>
+        <item>30kg</item>
+        <item>40kg</item>
+        <item>50kg</item>
+        <item>60kg</item>
+        <item>70kg</item>
+        <item>80kg</item>
+        <item>90kg</item>
+        <item>100kg</item>
+    </string-array>
 </resources>

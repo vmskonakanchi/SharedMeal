@@ -2,6 +2,7 @@ package com.example.sharedmeal;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,9 +25,6 @@ public class QuantityActivity extends AppCompatActivity {
     private Spinner quantitySpinner;
     private Spinner vType;
 
-    //for storing the data in the list
-    private List<String> vehicleTypes;
-
     //list for other classes to use via making them static
     static String quantitySelected;
     static String address;
@@ -36,32 +34,10 @@ public class QuantityActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quantity);
-        ShowQuantity();
-        ShowVehicleType();
-    }
-
-    private void ShowQuantity() {
-        //called when user touches quantity drop down columns
-        List<String> quantityList = new ArrayList<>();
-        for (int i = 10; i < 110; i += 10) {
-            quantityList.add(i + "kg");
-        }
         quantitySpinner = findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, quantityList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        quantitySpinner.setAdapter(adapter);
+        vType = findViewById(R.id.vehicleTypes);
     }
 
-    private void ShowVehicleType() {
-        vehicleTypes = new ArrayList<>();
-        vehicleTypes.add("Bike");
-        vehicleTypes.add("Auto");
-        vehicleTypes.add("Heavy Vehicle");
-        vType = findViewById(R.id.vehicleTypes);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, vehicleTypes);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        vType.setAdapter(adapter);
-    }
 
     public void GoToHome(View view) {
         //called when user clicks the submit button
@@ -69,6 +45,8 @@ public class QuantityActivity extends AppCompatActivity {
         //getting user address field above and getting the text in it below
         if (!TextUtils.isEmpty(userAddress.getText().toString())) {
             address = userAddress.getText().toString();
+        } else {
+            userAddress.setError("Please Enter A Valid Address");
         }
         quantitySelected = quantitySpinner.getSelectedItem().toString();
         vehicleType = vType.getSelectedItem().toString();

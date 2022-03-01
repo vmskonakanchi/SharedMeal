@@ -36,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
         EditText userPassword = findViewById(R.id.userPassword);
         EditText userPhone = findViewById(R.id.userPhone);
 
-        //create the user
         if (TextUtils.isEmpty(userEmail.getText().toString())) {
             userEmail.setError("Valid Username is required");
             Toast.makeText(this, "Please Type The Appropriate Username And Password", Toast.LENGTH_LONG).show();
@@ -50,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (userPassword.getText().toString().length() <= 5) {
             userPassword.setError("Password is too short must be greater than 8 characters");
         }
+        //create the user with username and password
         auth.createUserWithEmailAndPassword(userEmail.getText().toString(), userPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -63,5 +63,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 }

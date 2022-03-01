@@ -11,7 +11,7 @@
         <item name="colorOnSecondary">@color/lightpink</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/color</item>
-        <item name="backgroundTint">@color/grey</item>
+        <item name="android:background">@color/lightwhitewithblue</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>

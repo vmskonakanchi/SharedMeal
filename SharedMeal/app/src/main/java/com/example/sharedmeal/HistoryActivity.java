@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.data.model.User;
 
@@ -12,28 +13,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
-
-    private List<String> userDataList;
+    //TODO: Store the user list in database - so when the app closes the history will be there
+    private ListView list = null;
+    private ArrayAdapter<String> adapter;
+    private List<String> userDataList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        UpdateList();
+        list = findViewById(R.id.historyList);
+        try {
+            UpdateList();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     private void UpdateList() {
         //getting the data for the updating the list
-        ListView list = findViewById(R.id.historyList);
-        //TODO: get the selected item from the quantity activity and get them here and it userdata here
         String data = QuantityActivity.quantitySelected + "\n"
                 + QuantityActivity.vehicleType + "\n"
                 + QuantityActivity.address;
-
-        userDataList.add(data);
-        userDataList.add("Hey All XDXD");
-
-        ArrayAdapter<String> listOfDonations = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, userDataList);
-        list.setAdapter(listOfDonations);
+        if (!userDataList.contains(data)) {
+            userDataList.add(data);
+        } else {
+            Toast.makeText(this, "You have already donated for this address ", Toast.LENGTH_LONG).show();
+        }
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, userDataList);
+        list.setAdapter(adapter);
     }
 }
