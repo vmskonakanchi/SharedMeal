@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class StatusActivity extends AppCompatActivity {
 
     private boolean approved;
@@ -31,7 +33,7 @@ public class StatusActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donor_status);
         db = FirebaseDatabase.getInstance("https://shared-meal-ce571-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                .getReference("users").child("donors");
+                .getReference("users").child(MainActivity.type);
         user = FirebaseAuth.getInstance().getCurrentUser();
         uID = user.getUid();
         try {

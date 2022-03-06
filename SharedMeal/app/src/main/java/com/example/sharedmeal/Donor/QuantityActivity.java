@@ -30,6 +30,10 @@ public class QuantityActivity extends AppCompatActivity {
     // url for our database reference
     private final String databaseurl = "https://shared-meal-ce571-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
+    public static String dAddress;
+    public static String name;
+    public static String email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,8 @@ public class QuantityActivity extends AppCompatActivity {
         vType = findViewById(R.id.vehicleTypes);
         donationType = findViewById(R.id.donationType);
         db = FirebaseDatabase.getInstance(databaseurl).getReference();
+        name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
     }
 
 
@@ -59,6 +65,7 @@ public class QuantityActivity extends AppCompatActivity {
                 + "Address : " + address;
         try {
             if (!TextUtils.isEmpty(address)) {
+                dAddress = address;
                 db.child("users").child("donors").child(user.getUid()).child("recentDonation").setValue(donatedTo);
                 startActivity(new Intent(this, DashBoardActivity.class));
             } else {

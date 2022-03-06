@@ -13,7 +13,6 @@ import com.example.sharedmeal.R;
 public class MainActivity extends AppCompatActivity {
 
     static String type;
-    static boolean isDonor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         //called when user clicks the donor button
         Intent donateIntent = new Intent(this, LoginActivity.class);
         donateIntent.putExtra("module", "donors");
-        isDonor = true;
         type = "donors";
         startActivity(donateIntent);
     }

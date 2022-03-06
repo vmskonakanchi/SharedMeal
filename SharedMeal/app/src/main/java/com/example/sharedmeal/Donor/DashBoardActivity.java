@@ -1,5 +1,6 @@
 package com.example.sharedmeal.Donor;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -12,6 +13,8 @@ import android.widget.Toast;
 
 import com.example.sharedmeal.R;
 import com.google.firebase.auth.FirebaseAuth;
+
+import Rider.RiderDashboardActivity;
 
 public class DashBoardActivity extends AppCompatActivity {
     private FirebaseAuth auth;  //connection to firebase
@@ -46,7 +49,14 @@ public class DashBoardActivity extends AppCompatActivity {
     public void LogOut(View view) {
         //called when Logout button is clicked
         auth.signOut();
-        startActivity(new Intent(this, LoginActivity.class));
+        FirebaseAuth.IdTokenListener listener = new FirebaseAuth.IdTokenListener() {
+            @Override
+            public void onIdTokenChanged(@NonNull FirebaseAuth firebaseAuth) {
+                startActivity(new Intent(DashBoardActivity.this, LoginActivity.class));
+                Toast.makeText(DashBoardActivity.this, "Logged Out Successfully", Toast.LENGTH_SHORT).show();
+            }
+        };
+        auth.addIdTokenListener(listener);
     }
 
     private void AskForLocationPermission() {

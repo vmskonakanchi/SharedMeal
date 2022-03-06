@@ -36,7 +36,7 @@ public class HistoryActivity extends AppCompatActivity {
         setContentView(R.layout.donor_history);
         user = FirebaseAuth.getInstance().getCurrentUser();
         list = findViewById(R.id.historyList);
-        db = FirebaseDatabase.getInstance(databaseurl).getReference().child("users").child("donors").child(user.getUid());
+        db = FirebaseDatabase.getInstance(databaseurl).getReference().child("users").child(MainActivity.type).child(user.getUid());
         try {
             UpdateList();
         } catch (NullPointerException e) {
@@ -50,7 +50,6 @@ public class HistoryActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 result.add(snapshot.getValue(User.class).getRecentDonation());
-                Log.w("", snapshot.getValue(User.class).getRecentDonation());
                 adapter = new ArrayAdapter<>(HistoryActivity.this, android.R.layout.simple_list_item_activated_1, result);
                 list.setAdapter(adapter);
             }
