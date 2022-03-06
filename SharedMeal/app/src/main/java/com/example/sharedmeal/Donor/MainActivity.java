@@ -1,32 +1,40 @@
-package com.example.sharedmeal;
+package com.example.sharedmeal.Donor;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.sharedmeal.R;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private FirebaseAuth auth;
+    static String type;
+    static boolean isDonor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        auth = FirebaseAuth.getInstance();
     }
 
-    public void Donate(View view) {
+    public void Donor(View view) {
         //called when user clicks the donor button
         Intent donateIntent = new Intent(this, LoginActivity.class);
+        donateIntent.putExtra("module", "donors");
+        isDonor = true;
+        type = "donors";
         startActivity(donateIntent);
     }
 
-    public void Ride(View view) {
+    public void Rider(View view) {
         //called when user clicks on the Rider button
+        Intent intent = new Intent(this, LoginActivity.class);
+        type = "riders";
+        intent.putExtra("module", "riders");
+        startActivity(intent);
     }
 }

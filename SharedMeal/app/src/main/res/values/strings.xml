@@ -12,6 +12,7 @@
     <string name="userName">Name</string>
     <string name="phone">Phone</string>
     <string name="Register">Register</string>
+    <string name="databaseurl">https://shared-meal-ce571-default-rtdb.asia-southeast1.firebasedatabase.app/</string>
     <string-array name="VehicleType">
         <item>Bike</item>
         <item>Auto</item>
@@ -28,5 +29,10 @@
         <item>80kg</item>
         <item>90kg</item>
         <item>100kg</item>
+    </string-array>
+    <string-array name="donationType">
+        <item>For People</item>
+        <item>For Animals</item>
+        <item>For Both</item>
     </string-array>
 </resources>

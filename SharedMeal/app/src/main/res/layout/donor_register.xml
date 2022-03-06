@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".Donor.RegisterActivity">
 
     <EditText
         android:id="@+id/userName"
@@ -53,32 +53,17 @@
         app:layout_constraintStart_toStartOf="@+id/userEmail"
         app:layout_constraintTop_toBottomOf="@+id/userEmail" />
 
-    <EditText
-        android:id="@+id/userPhone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:autofillHints="phone"
-        android:ems="10"
-        android:hint="@string/phone"
-        android:inputType="number"
-        android:minHeight="48dp"
-        android:textColorHint="#757575"
-        app:layout_constraintEnd_toEndOf="@+id/userPassword"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/userPassword"
-        app:layout_constraintTop_toBottomOf="@+id/userPassword" />
-
     <Button
         android:id="@+id/button2"
         android:layout_width="203dp"
         android:layout_height="57dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="56dp"
+        android:onClick="RegisterNew"
         android:text="@string/Register"
         android:textColor="@color/text"
         app:layout_constraintEnd_toEndOf="@+id/userPassword"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@+id/userPassword"
-        app:layout_constraintTop_toBottomOf="@+id/userPassword"
-        android:onClick="RegisterNew"/>
+        app:layout_constraintTop_toBottomOf="@+id/userPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

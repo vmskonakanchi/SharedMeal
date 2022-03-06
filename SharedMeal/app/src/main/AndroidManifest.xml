@@ -15,25 +15,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SharedMeal">
         <activity
-            android:name=".StatusActivity"
+            android:name="Rider.RiderDashboardActivity"
             android:exported="false" />
         <activity
-            android:name=".HistoryActivity"
+            android:name="Rider.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".QuantityActivity"
+            android:name="Rider.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".DashBoardActivity"
+            android:name=".Donor.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Donor.StatusActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Donor.HistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Donor.QuantityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Donor.DashBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Donor.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Donor.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Donor.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

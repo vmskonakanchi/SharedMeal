@@ -1,19 +1,16 @@
-package com.example.sharedmeal;
+package com.example.sharedmeal.Donor;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.sharedmeal.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class DashBoardActivity extends AppCompatActivity {
@@ -22,7 +19,7 @@ public class DashBoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dash_board);
+        setContentView(R.layout.donor_dash_board);
         auth = FirebaseAuth.getInstance();
     }
 
@@ -39,6 +36,11 @@ public class DashBoardActivity extends AppCompatActivity {
     public void History(View view) {
         //called when History button is clicked
         startActivity(new Intent(this, HistoryActivity.class));
+    }
+
+    public void Profile(View view) {
+        //called when Profile button is clicked
+        startActivity(new Intent(this, ProfileActivity.class));
     }
 
     public void LogOut(View view) {
