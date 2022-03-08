@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SharedMeal">
         <activity
+            android:name="Rider.PickUpComplete"
+            android:exported="false" />
+        <activity
             android:name="Rider.RiderHistory"
             android:exported="false" />
         <activity
