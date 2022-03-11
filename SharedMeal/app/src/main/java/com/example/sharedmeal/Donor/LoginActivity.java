@@ -52,9 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-    //TODO: check if the user email has in
 
     private void CheckDetails(EditText email, EditText password) {
         if (TextUtils.isEmpty(password.getText().toString()) && TextUtils.isEmpty(email.getText())) {
@@ -84,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String details = snapshot.child(MainActivity.type).child(auth.getCurrentUser().getUid()).getValue(User.class).getEmail();
                                     if (details.equals(email.getText().toString())) {
                                         Toast.makeText(LoginActivity.this, "Logging in", Toast.LENGTH_SHORT).show();
-                                        if (MainActivity.type == "donors")
+                                        if (MainActivity.type.equals("donors"))
                                             startActivity(new Intent(LoginActivity.this, DashBoardActivity.class));
                                         else
                                             startActivity(new Intent(LoginActivity.this, RiderDashboardActivity.class));
@@ -112,8 +110,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void Register(View view) {
         //called when user pressed register button - go to register activity
-        String module = "";
-
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }

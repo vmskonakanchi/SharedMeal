@@ -53,11 +53,11 @@ public class RiderDashboardActivity extends AppCompatActivity {
 
     public void RiderHistory(View view) {
         //called when history button is clicked in rider-dashboard
-        startActivity(new Intent(this, HistoryActivity.class));
+        startActivity(new Intent(this, RiderHistory.class));
     }
 
     public void RiderStatus(View view) {
         //called when status button is clicked in rider-dashboard
-        startActivity(new Intent(this, StatusActivity.class));
+        startActivity(new Intent(this, PickUpComplete.class));
     }
 }

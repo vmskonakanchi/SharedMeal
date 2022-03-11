@@ -13,6 +13,7 @@
     <string name="phone">Phone</string>
     <string name="Register">Register</string>
     <string name="databaseurl">https://shared-meal-ce571-default-rtdb.asia-southeast1.firebasedatabase.app/</string>
+    <string name="mapsApi">AIzaSyBKQQZpd-t_FRsXayUWkKzRchm5qDAJkX8</string>
     <string-array name="VehicleType">
         <item>Bike</item>
         <item>Auto</item>
@@ -35,4 +36,5 @@
         <item>For Animals</item>
         <item>For Both</item>
     </string-array>
+    <string name="title_activity_rider_map">RiderMapActivity</string>
 </resources>

@@ -14,6 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SharedMeal">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/mapsApi" />
+
+        <activity
+            android:name="Rider.RiderMapActivity"
+            android:exported="false"
+            android:label="@string/title_activity_rider_map" />
         <activity
             android:name="Rider.PickUpComplete"
             android:exported="false" />
@@ -22,12 +30,6 @@
             android:exported="false" />
         <activity
             android:name="Rider.RiderDashboardActivity"
-            android:exported="false" />
-        <activity
-            android:name="Rider.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name="Rider.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".Donor.ProfileActivity"
