@@ -87,11 +87,12 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void AddUser(String name, String email, DatabaseReference db, FirebaseAuth auth) {
-        User user = new User(name, email, " ");
+        User user = new User(name, email);
         if (db != null && auth != null) {
             try {
                 db.child("users").child(MainActivity.type).child(auth.getCurrentUser().getUid()).setValue(user);
             } catch (Exception e) {
+                Toast.makeText(this, "Something went wrong please try again", Toast.LENGTH_SHORT).show();
                 e.printStackTrace();
             }
         }

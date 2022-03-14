@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.sharedmeal.Donor.HistoryActivity;
 import com.example.sharedmeal.Donor.LoginActivity;
+import com.example.sharedmeal.Donor.MainActivity;
 import com.example.sharedmeal.Donor.ProfileActivity;
 import com.example.sharedmeal.Donor.StatusActivity;
 import com.example.sharedmeal.R;
@@ -25,6 +26,7 @@ public class RiderDashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rider_dashboard);
+        auth = FirebaseAuth.getInstance();
     }
 
 
@@ -59,5 +61,19 @@ public class RiderDashboardActivity extends AppCompatActivity {
     public void RiderStatus(View view) {
         //called when status button is clicked in rider-dashboard
         startActivity(new Intent(this, PickUpComplete.class));
+    }
+
+    public void HomeRider(View view) {
+        //called when home button is clicked
+        auth.signOut();
+        FirebaseAuth.IdTokenListener listener = new FirebaseAuth.IdTokenListener() {
+            @Override
+            public void onIdTokenChanged(@NonNull FirebaseAuth firebaseAuth) {
+                startActivity(new Intent(RiderDashboardActivity.this, MainActivity.class));
+                Toast.makeText(RiderDashboardActivity.this, "Logged Out Successfully", Toast.LENGTH_SHORT).show();
+            }
+        };
+        auth.addIdTokenListener(listener);
+
     }
 }

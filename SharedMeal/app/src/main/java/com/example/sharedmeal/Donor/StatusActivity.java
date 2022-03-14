@@ -22,9 +22,9 @@ import java.util.ArrayList;
 
 public class StatusActivity extends AppCompatActivity {
 
-    private boolean approved;
+    public static boolean approved;
     private DatabaseReference db;
-
+    private final String databaseURL = "https://shared-meal-ce571-default-rtdb.asia-southeast1.firebasedatabase.app/";
     private FirebaseUser user;
     private String uID;
 
@@ -32,8 +32,8 @@ public class StatusActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donor_status);
-        db = FirebaseDatabase.getInstance("https://shared-meal-ce571-default-rtdb.asia-southeast1.firebasedatabase.app/")
-                .getReference("users").child(MainActivity.type);
+        db = FirebaseDatabase.getInstance(databaseURL)
+                .getReference("users").child(MainActivity.type).child("donations");
         user = FirebaseAuth.getInstance().getCurrentUser();
         uID = user.getUid();
         try {
@@ -44,36 +44,35 @@ public class StatusActivity extends AppCompatActivity {
     }
 
     private void UpdateStatus() {
-        TextView recentText = findViewById(R.id.recentDonationText);
-        TextView approvedText = findViewById(R.id.approvedText);
-        Button deleteButton = findViewById(R.id.deleteButton);
         if (approved) {
-            //show approved text with a tick mark on right side of it
-            deleteButton.setVisibility(View.GONE);
-            db.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        String address = snapshot.child(uID).getValue(User.class).getRecentDonation();
-                        recentText.setText(address);
-                        approvedText.setText("APPROVED");
-                    }
-                }
+            //TODO:set approved to yes
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(StatusActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
         } else {
-            approvedText.setText("NOT APPROVED");
-            deleteButton.setVisibility(View.VISIBLE);
+            //TODO:set approved to not
+            // show delete button
         }
     }
 
     public void DeleteDonation(View view) {
         // called when delete donation button is clicked
-        db.child(uID).child("recentDonation").setValue(" ");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    for (DataSnapshot d : snapshot.getChildren()) {
+                        String address = d.getValue().toString();
+                        /*
+                           TODO: here add logic to show details in card view and button
+                         */
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(StatusActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

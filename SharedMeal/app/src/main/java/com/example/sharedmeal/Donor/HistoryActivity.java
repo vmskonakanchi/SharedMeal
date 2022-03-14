@@ -1,16 +1,19 @@
 package com.example.sharedmeal.Donor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.sharedmeal.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity {
@@ -30,13 +34,16 @@ public class HistoryActivity extends AppCompatActivity {
     private DatabaseReference db;
     private FirebaseUser user;
 
+    static List<String> riderResults;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donor_history);
         user = FirebaseAuth.getInstance().getCurrentUser();
         list = findViewById(R.id.historyList);
-        db = FirebaseDatabase.getInstance(databaseurl).getReference().child("users").child(MainActivity.type).child(user.getUid());
+        db = FirebaseDatabase.getInstance(databaseurl).getReference().child("users")
+                .child(MainActivity.type).child(user.getUid()).child("donations");
         try {
             UpdateList();
         } catch (NullPointerException e) {
@@ -46,19 +53,32 @@ public class HistoryActivity extends AppCompatActivity {
 
     private void UpdateList() {
         //getting the data for the updating the list
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                result.add(snapshot.getValue(User.class).getRecentDonation());
-                adapter = new ArrayAdapter<>(HistoryActivity.this, android.R.layout.simple_list_item_activated_1, result);
-                list.setAdapter(adapter);
-            }
+        //Log.e("Data", db.child("donations").push().getKey().toString());
+        try {
+            ValueEventListener eventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()) {
+                        for (DataSnapshot d : snapshot.getChildren()) {
+                            String address = d.getValue().toString();
+                            result.add(address);
+                        }
+                        Collections.reverse(result);
+                        adapter = new ArrayAdapter<>(HistoryActivity.this, android.R.layout.simple_list_item_activated_1, result);
+                        riderResults = result;
+                        list.setAdapter(adapter);
+                    }
+                }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("Error : ", error.getMessage());
-            }
-        };
-        db.addValueEventListener(eventListener);
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e("Error : ", error.getMessage());
+                }
+            };
+            db.addValueEventListener(eventListener);
+        } catch (NullPointerException e) {
+            Toast.makeText(this, "Something went wrong try again", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }
 }

@@ -2,6 +2,7 @@ package Rider;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.sharedmeal.R;
@@ -20,7 +21,6 @@ public class RiderMapActivity extends FragmentActivity implements OnMapReadyCall
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //TODO: error check here
         //TODO: show map at the point at the address of the donor
         super.onCreate(savedInstanceState);
 
@@ -34,7 +34,7 @@ public class RiderMapActivity extends FragmentActivity implements OnMapReadyCall
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(@NonNull GoogleMap googleMap) {
         try {
             mMap = googleMap;
 

@@ -77,4 +77,17 @@ public class DashBoardActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void Home(View view) {
+        // called when user clicked on home button
+        auth.signOut();
+        FirebaseAuth.IdTokenListener listener = new FirebaseAuth.IdTokenListener() {
+            @Override
+            public void onIdTokenChanged(@NonNull FirebaseAuth firebaseAuth) {
+                startActivity(new Intent(DashBoardActivity.this, MainActivity.class));
+                Toast.makeText(DashBoardActivity.this, "Logged Out Successfully", Toast.LENGTH_SHORT).show();
+            }
+        };
+        auth.addIdTokenListener(listener);
+    }
 }

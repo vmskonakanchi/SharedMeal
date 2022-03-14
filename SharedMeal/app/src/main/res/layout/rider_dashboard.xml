@@ -69,6 +69,17 @@
             android:id="@+id/logout"
             android:layout_width="186dp"
             android:layout_height="109dp"
+            android:onClick="HomeRider"
+            android:text="Home"
+            android:textColor="@color/text"
+            android:textSize="30sp"
+            app:layout_column="0"
+            app:layout_row="2" />
+
+        <Button
+            android:id="@+id/logout2"
+            android:layout_width="186dp"
+            android:layout_height="109dp"
             android:onClick="RiderLogOut"
             android:text="Log Out"
             android:textColor="@color/text"

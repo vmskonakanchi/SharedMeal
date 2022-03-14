@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.sharedmeal.Donor.StatusActivity;
 import com.example.sharedmeal.R;
 
 public class PickUpComplete extends AppCompatActivity {
@@ -43,5 +44,6 @@ public class PickUpComplete extends AppCompatActivity {
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
         startActivity(i);
+        StatusActivity.approved = true;
     }
 }

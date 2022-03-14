@@ -22,8 +22,7 @@ public class QuantityActivity extends AppCompatActivity {
     private Spinner vType;
     private Spinner donationType;
 
-
-    // refering database
+    // referring database
     private DatabaseReference db;
     private FirebaseUser user;
 
@@ -66,7 +65,7 @@ public class QuantityActivity extends AppCompatActivity {
         try {
             if (!TextUtils.isEmpty(address)) {
                 dAddress = address;
-                db.child("users").child("donors").child(user.getUid()).child("recentDonation").setValue(donatedTo);
+                db.child("users").child("donors").child(user.getUid()).child("donations").push().setValue(donatedTo);
                 startActivity(new Intent(this, DashBoardActivity.class));
             } else {
                 Toast.makeText(this, "Please Enter A Valid Address", Toast.LENGTH_SHORT).show();
