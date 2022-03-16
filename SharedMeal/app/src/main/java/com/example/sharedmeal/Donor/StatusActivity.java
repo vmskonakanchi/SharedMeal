@@ -1,9 +1,11 @@
 package com.example.sharedmeal.Donor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,54 +27,55 @@ public class StatusActivity extends AppCompatActivity {
     public static boolean approved;
     private DatabaseReference db;
     private final String databaseURL = "https://shared-meal-ce571-default-rtdb.asia-southeast1.firebasedatabase.app/";
-    private FirebaseUser user;
-    private String uID;
+
+    private TextView addressView;
+    private Button deleteButton;
+    private TextView approvedView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.donor_status);
         db = FirebaseDatabase.getInstance(databaseURL)
-                .getReference("users").child(MainActivity.type).child("donations");
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        uID = user.getUid();
-        try {
-            UpdateStatus();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+                .getReference("users").child(MainActivity.type).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("donations");
+        addressView = findViewById(R.id.addressText);
+        deleteButton = findViewById(R.id.deleteButton);
+        approvedView = findViewById(R.id.approvedText);
+        UpdateStatus();
     }
 
     private void UpdateStatus() {
-        if (approved) {
-            //TODO:set approved to yes
-
-        } else {
-            //TODO:set approved to not
-            // show delete button
+        try {
+            addressView.setText(HistoryActivity.riderResults.get(0));
+            if (approved) {
+                approvedView.setText("Approved");
+                deleteButton.setVisibility(View.INVISIBLE);
+            } else {
+                approvedView.setText("Not Approved");
+                deleteButton.setVisibility(View.VISIBLE);
+            }
+        } catch (
+                NullPointerException e) {
+            Toast.makeText(this, "Something went wrong,please try again", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
         }
+
     }
 
     public void DeleteDonation(View view) {
-        // called when delete donation button is clicked
-        db.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    for (DataSnapshot d : snapshot.getChildren()) {
-                        String address = d.getValue().toString();
-                        /*
-                           TODO: here add logic to show details in card view and button
-                         */
-                    }
+        // called when deleteButton donation button is clicked
+        try {
+            db.removeValue(new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                    ref.setValue(null);
+                    addressView.setText("");
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(StatusActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            });
+        } catch (NullPointerException e) {
+            Toast.makeText(this, "Something went wrong,please try again", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }
 
 }
