@@ -85,7 +85,6 @@ public class DashBoardActivity extends AppCompatActivity {
             @Override
             public void onIdTokenChanged(@NonNull FirebaseAuth firebaseAuth) {
                 startActivity(new Intent(DashBoardActivity.this, MainActivity.class));
-                Toast.makeText(DashBoardActivity.this, "Logged Out Successfully", Toast.LENGTH_SHORT).show();
             }
         };
         auth.addIdTokenListener(listener);

@@ -7,7 +7,7 @@
     tools:context="Rider.PickUpComplete">
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/completeButton"
         android:layout_width="280dp"
         android:layout_height="70dp"
         android:layout_marginBottom="136dp"
@@ -21,14 +21,30 @@
 
     <ImageView
         android:id="@+id/foodImage"
-        android:layout_width="247dp"
-        android:layout_height="189dp"
+        android:layout_width="371dp"
+        android:layout_height="257dp"
         android:layout_marginTop="68dp"
         android:layout_marginBottom="268dp"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintBottom_toTopOf="@+id/completeButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/fui_ic_anonymous_white_24dp" />
+
+    <TextView
+        android:id="@+id/cText"
+        android:layout_width="257dp"
+        android:layout_height="55dp"
+        android:text="PickUpCompleted"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="@color/text"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodImage"
+        app:layout_constraintVertical_bias="0.406" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

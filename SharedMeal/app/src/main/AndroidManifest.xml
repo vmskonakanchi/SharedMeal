@@ -19,10 +19,6 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name="Rider.RiderMapActivity"
-            android:exported="false"
-            android:label="@string/title_activity_rider_map" />
-        <activity
             android:name="Rider.PickUpComplete"
             android:exported="false" />
         <activity

@@ -3,7 +3,9 @@ package Rider;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class RiderHistory extends AppCompatActivity {
 
@@ -23,7 +26,7 @@ public class RiderHistory extends AppCompatActivity {
     private DatabaseReference db;
     private List<String> donations = new ArrayList<>();
 
-    private final String databaseURL = "https://shared-meal-ce571-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    private static final String databaseURL = "https://shared-meal-ce571-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +38,21 @@ public class RiderHistory extends AppCompatActivity {
     }
 
     private void UpdateList() {
-        //TODO: add logic to get donor recentDonation to the rider history page along with name of the donor and userid - Database query
         try {
             String recent = "Donor Name : " + QuantityActivity.name +
-                    "Donor Email : " + QuantityActivity.email
-                    + QuantityActivity.dAddress;
+                    "Donor Email : " + QuantityActivity.email +
+                    "Address : " + QuantityActivity.dAddress;
             donations.add(recent);
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, donations);
             list.setAdapter(adapter);
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    startActivity(new Intent(RiderHistory.this, RiderMapActivity.class));
+
+                    String address = QuantityActivity.dAddress;
+                    String uri = "http://maps.google.co.in/maps?q=" + address;
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    startActivity(intent);
                 }
             });
         } catch (NullPointerException e) {

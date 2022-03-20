@@ -59,7 +59,6 @@ public class StatusActivity extends AppCompatActivity {
             Toast.makeText(this, "Something went wrong,please try again", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
         }
-
     }
 
     public void DeleteDonation(View view) {
