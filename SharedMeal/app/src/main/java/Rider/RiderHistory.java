@@ -39,16 +39,15 @@ public class RiderHistory extends AppCompatActivity {
 
     private void UpdateList() {
         try {
-            String recent = "Donor Name : " + QuantityActivity.name +
-                    "Donor Email : " + QuantityActivity.email +
-                    "Address : " + QuantityActivity.dAddress;
+            String recent = "Donor Name : " + QuantityActivity.name + "\n"
+                    + "Donor Email : " + QuantityActivity.email + "\n"
+                    + "Address : " + QuantityActivity.dAddress;
             donations.add(recent);
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, donations);
             list.setAdapter(adapter);
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                     String address = QuantityActivity.dAddress;
                     String uri = "http://maps.google.co.in/maps?q=" + address;
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));

@@ -6,7 +6,6 @@ public class User {
     private String name;
     private String email;
 
-
     public User() {
         // for not showing error
     }

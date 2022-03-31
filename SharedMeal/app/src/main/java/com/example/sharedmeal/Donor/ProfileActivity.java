@@ -90,7 +90,7 @@ public class ProfileActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             if (nameSuccessful) {
                                 emailSuccessful = true;
-                                Toast.makeText(ProfileActivity.this, "Update Successful", Toast.LENGTH_SHORT).show();
+
                             } else {
                                 Toast.makeText(ProfileActivity.this, task.getException().toString(), Toast.LENGTH_SHORT).show();
                             }
@@ -111,6 +111,7 @@ public class ProfileActivity extends AppCompatActivity {
                             if (nameSuccessful && emailSuccessful) {
                                 db.child(user.getUid()).child("email").setValue(user.getEmail());
                                 db.child(user.getUid()).child("name").setValue(user.getDisplayName());
+                                Toast.makeText(ProfileActivity.this, "Update Successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(ProfileActivity.this, DashBoardActivity.class));
                                 userName.setTextIsSelectable(false);
                                 userEmail.setTextIsSelectable(false);

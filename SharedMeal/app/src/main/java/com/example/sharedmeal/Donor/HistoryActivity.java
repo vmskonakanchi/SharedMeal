@@ -53,7 +53,6 @@ public class HistoryActivity extends AppCompatActivity {
 
     private void UpdateList() {
         //getting the data for the updating the list
-        //Log.e("Data", db.child("donations").push().getKey().toString());
         try {
             ValueEventListener eventListener = new ValueEventListener() {
                 @Override
@@ -72,6 +71,7 @@ public class HistoryActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(HistoryActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.e("Error : ", error.getMessage());
                 }
             };

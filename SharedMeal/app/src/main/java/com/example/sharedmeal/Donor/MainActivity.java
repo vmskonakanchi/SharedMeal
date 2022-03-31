@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     public void Donor(View view) {
         //called when user clicks the donor button
         Intent donateIntent = new Intent(this, LoginActivity.class);
-        donateIntent.putExtra("module", "donors");
         type = "donors";
         startActivity(donateIntent);
     }
@@ -32,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         //called when user clicks on the Rider button
         Intent intent = new Intent(this, LoginActivity.class);
         type = "riders";
-        intent.putExtra("module", "riders");
         startActivity(intent);
     }
 }

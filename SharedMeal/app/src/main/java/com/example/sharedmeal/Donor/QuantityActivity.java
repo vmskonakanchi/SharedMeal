@@ -52,6 +52,7 @@ public class QuantityActivity extends AppCompatActivity {
         String address = "";
         //called when user clicks the submit button
         EditText userAddress = findViewById(R.id.address);
+
         //getting user address field above and getting the text in it below
         if (!TextUtils.isEmpty(userAddress.getText().toString())) {
             address = userAddress.getText().toString();
