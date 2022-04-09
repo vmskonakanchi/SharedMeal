@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.sharedmeal.Donor.HistoryActivity;
 import com.example.sharedmeal.Donor.QuantityActivity;
 import com.example.sharedmeal.R;
 import com.google.firebase.database.DatabaseReference;
@@ -23,33 +24,27 @@ import java.util.Locale;
 public class RiderHistory extends AppCompatActivity {
 
     private ListView list;
-    private DatabaseReference db;
-    private List<String> donations = new ArrayList<>();
 
-    private static final String databaseURL = "https://shared-meal-ce571-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    private List<String> results;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rider_history);
-        db = FirebaseDatabase.getInstance(databaseURL).getReference("users").child("donors");
+        results = HistoryActivity.riderResults;
         list = findViewById(R.id.riderHistoryList);
         UpdateList();
     }
 
     private void UpdateList() {
         try {
-            String recent = "Donor Name : " + QuantityActivity.name + "\n"
-                    + "Donor Email : " + QuantityActivity.email + "\n"
-                    + "Address : " + QuantityActivity.dAddress;
-            donations.add(recent);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, donations);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, results);
             list.setAdapter(adapter);
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String address = QuantityActivity.dAddress;
-                    String uri = "http://maps.google.co.in/maps?q=" + address;
+                    String adress = results.get(position);
+                    String uri = "http://maps.google.co.in/maps?q=" + adress.substring(70, 80);
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
                     startActivity(intent);
                 }

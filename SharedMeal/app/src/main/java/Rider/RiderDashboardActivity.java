@@ -29,7 +29,6 @@ public class RiderDashboardActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
     }
 
-
     public void RiderProfile(View view) {
         //called when profile in rider-activity is clicked
         startActivity(new Intent(this, ProfileActivity.class));

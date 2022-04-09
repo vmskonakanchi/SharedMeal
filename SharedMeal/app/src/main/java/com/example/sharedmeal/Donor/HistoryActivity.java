@@ -34,7 +34,7 @@ public class HistoryActivity extends AppCompatActivity {
     private DatabaseReference db;
     private FirebaseUser user;
 
-    static List<String> riderResults;
+    public static List<String> riderResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,10 +61,10 @@ public class HistoryActivity extends AppCompatActivity {
                         for (DataSnapshot d : snapshot.getChildren()) {
                             String address = d.getValue().toString();
                             result.add(address);
+                            riderResults = result;
                         }
                         Collections.reverse(result);
                         adapter = new ArrayAdapter<>(HistoryActivity.this, android.R.layout.simple_list_item_activated_1, result);
-                        riderResults = result;
                         list.setAdapter(adapter);
                     }
                 }
